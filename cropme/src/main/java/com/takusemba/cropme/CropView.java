@@ -110,10 +110,9 @@ public class CropView extends FrameLayout implements Croppable {
                 CropOverlayView overlayView = findViewById(R.id.cropme_overlay);
 
                 float resultWidth = getWidth() * percentWidth;
-                float resultHeight = getHeight() * percentHeight;
 
-                restriction = new RectF((getWidth() - resultWidth) / 2f, (getHeight() - resultHeight) / 2f,
-                        (getWidth() + resultWidth) / 2f, (getHeight() + resultHeight) / 2f);
+                restriction = new RectF((getWidth() - resultWidth) / 2f, (getHeight() - resultWidth) / 2f,
+                        (getWidth() + resultWidth) / 2f, (getHeight() + resultWidth) / 2f);
 
                 horizontalAnimator = new HorizontalMoveAnimatorImpl(target, restriction, maxScale);
                 verticalAnimator = new VerticalMoveAnimatorImpl(target, restriction, maxScale);
