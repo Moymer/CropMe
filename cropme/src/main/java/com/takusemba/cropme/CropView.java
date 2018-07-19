@@ -236,8 +236,8 @@ public class CropView extends FrameLayout implements Croppable {
             return;
         }
 
-        width = (int) Math.min(bitmap.width, width);
-        height = (int) Math.min(bitmap.height, height);
+        width = Math.min(bitmap.getWidth(), width);
+        height = Math.min(bitmap.getHeight(), height);
 
         Bitmap result = Bitmap.createBitmap(bitmap, leftOffset, topOffset, width, height);
         if (result != null) {
