@@ -13,8 +13,11 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class SquareCropOverlay extends CropOverlay {
-
+/**
+ * Created by gabriellins @ moymer
+ * on 09/01/19.
+ */
+public class CircleCropOverlay extends CropOverlay {
     private static final int BORDER_WIDTH = 5;
 
     private final Paint background = new Paint();
@@ -40,18 +43,18 @@ public class SquareCropOverlay extends CropOverlay {
 
     private static final boolean DEFAULT_WITH_BORDER = true;
 
-    public SquareCropOverlay(@NonNull Context context) {
+    public CircleCropOverlay(@NonNull Context context) {
         this(context, null);
     }
 
-    public SquareCropOverlay(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CircleCropOverlay(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SquareCropOverlay(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CircleCropOverlay(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.SquareCropOverlay);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CircleCropOverlay);
 
         percentWidth = a.getFraction(R.styleable.SquareCropOverlay_cropme_result_width, DEFAULT_BASE, DEFAULT_PBASE, DEFAULT_PERCENT_WIDTH);
         if (percentWidth < MIN_PERCENT || MAX_PERCENT < percentWidth) {
@@ -109,8 +112,13 @@ public class SquareCropOverlay extends CropOverlay {
         float right = (getWidth() + frameWidth) / 2f;
         float bottom = (getHeight() + frameHeight) / 2f;
 
+        float centerX = getWidth() / 2f;
+        float centerY = getHeight() / 2f;
+        float radius = centerX * percentWidth;
+
         canvas.drawRect(0, 0, getWidth(), getHeight(), background);
-        canvas.drawRect(left, top, right, bottom, cropPaint);
+        canvas.drawCircle(centerX, centerY, radius, cropPaint);
+//        canvas.drawRect(left, top, right, bottom, cropPaint);
 
         if (withBorder) {
             float borderHeight = frameHeight / 3;

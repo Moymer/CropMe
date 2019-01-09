@@ -9,4 +9,10 @@
         <attr name="cropme_with_border" format="boolean" />
         <attr name="cropme_background_alpha" format="fraction" />
     </declare-styleable>
+    <declare-styleable name="CircleCropOverlay">
+        <attr name="crop_result_width" format="fraction" />
+        <attr name="crop_result_height" format="fraction" />
+        <attr name="crop_with_border" format="boolean" />
+        <attr name="crop_background_alpha" format="fraction" />
+    </declare-styleable>
 </resources>
