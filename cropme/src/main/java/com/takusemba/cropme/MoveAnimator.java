@@ -3,10 +3,7 @@ package com.takusemba.cropme;
 import android.support.animation.SpringForce;
 
 /**
- * MoveAnimator
- *
- * @author takusemba
- * @since 05/09/2017
+ * interface to move Image.
  **/
 interface MoveAnimator {
 
@@ -33,7 +30,7 @@ interface MoveAnimator {
     void move(float delta);
 
     /**
-     * bounce image when image is off of {@link CropOverlayView#resultRect}
+     * bounce image when image is off of {@link CropOverlay#getFrame()}
      *
      * @param velocity velocity when starting to move
      **/

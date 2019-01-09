@@ -3,10 +3,7 @@ package com.takusemba.cropme;
 import android.graphics.Bitmap;
 
 /**
- * OnCropListener
- *
- * @author takusemba
- * @since 05/09/2017
+ * Listener to return an cropped image.
  **/
 public interface OnCropListener {
 

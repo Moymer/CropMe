@@ -13,10 +13,7 @@ import android.view.View;
 import static android.view.View.TRANSLATION_X;
 
 /**
- * HorizontalMoveAnimatorImpl
- *
- * @author takusemba
- * @since 05/09/2017
+ * HorizontalMoveAnimatorImpl is responsible for animating {@link CropImageView} horizontally.
  **/
 class HorizontalMoveAnimatorImpl implements MoveAnimator {
 
