@@ -13,10 +13,7 @@ import android.view.View;
 import static android.view.View.TRANSLATION_Y;
 
 /**
- * VerticalMoveAnimatorImpl
- *
- * @author takusemba
- * @since 05/09/2017
+ * VerticalMoveAnimatorImpl is responsible for animating {@link CropImageView} vertically.
  **/
 class VerticalMoveAnimatorImpl implements MoveAnimator {
 

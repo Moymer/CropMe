@@ -7,10 +7,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
 /**
- * ActionDetector
- *
- * @author takusemba
- * @since 05/09/2017
+ * Detect all actions related to Image transition.
  **/
 class ActionDetector {
 

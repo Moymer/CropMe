@@ -2,27 +2,32 @@ package com.takusemba.cropme;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.support.annotation.MainThread;
+import android.widget.ImageView;
 
 /**
- * Croppable
- *
- * @author takusemba
- * @since 05/09/2017
+ * Interface to set an Image, and return an cropped image back.
  **/
 interface Croppable {
 
     /**
-     * setUri to {@link CropImageView}
+     * setUri to {@link ImageView}
      **/
     void setUri(Uri uri);
 
     /**
-     * setBitmap to {@link CropImageView}
+     * setBitmap to {@link ImageView}
      **/
     void setBitmap(Bitmap bitmap);
 
     /**
-     * crop image. fails if image is outside of {@link CropOverlayView#resultRect}
+     * check if Image is out of the frame.
+     */
+    boolean isOffOfFrame();
+
+    /**
+     * Crop the Image on a new thread, and return the cropped Bitmap on MainThread via {@link OnCropListener}.
      **/
+    @MainThread
     void crop(OnCropListener listener);
 }

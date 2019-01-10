@@ -8,7 +8,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="30dp"
         android:background="@color/colorPrimary"
         android:elevation="4dp"
         app:contentInsetLeft="0dp"
@@ -25,6 +25,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/selector_item_background_borderless_light"
+                android:scaleType="fitXY"
                 android:padding="16dp"
                 android:src="@drawable/cross" />
 
@@ -45,6 +46,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/selector_item_background_borderless_light"
+                android:scaleType="fitXY"
                 android:padding="16dp"
                 android:src="@drawable/check" />
 
@@ -57,18 +59,25 @@
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
         android:orientation="vertical"
-        android:weightSum="3">
+        android:weightSum="10">
 
-        <com.takusemba.cropme.CropView
+        <com.takusemba.cropme.CropLayout
             android:id="@+id/crop_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            app:cropme_background_alpha="80%"
-            app:cropme_max_scale="3"
-            app:cropme_result_height="80%"
-            app:cropme_result_width="80%"
-            app:cropme_with_border="true" />
+            android:layout_weight="9"
+            app:cropme_max_scale="3">
+
+            <com.takusemba.cropme.CircleCropOverlay
+                android:id="@+id/cropme_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:crop_background_alpha="80%"
+                app:crop_result_height="90%"
+                app:crop_result_width="90%"
+                app:crop_with_border="false" />
+
+        </com.takusemba.cropme.CropLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
