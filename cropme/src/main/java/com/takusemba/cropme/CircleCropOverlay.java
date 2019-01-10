@@ -56,22 +56,22 @@ public class CircleCropOverlay extends CropOverlay {
 
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CircleCropOverlay);
 
-        percentWidth = a.getFraction(R.styleable.SquareCropOverlay_cropme_result_width, DEFAULT_BASE, DEFAULT_PBASE, DEFAULT_PERCENT_WIDTH);
+        percentWidth = a.getFraction(R.styleable.CircleCropOverlay_crop_result_width, DEFAULT_BASE, DEFAULT_PBASE, DEFAULT_PERCENT_WIDTH);
         if (percentWidth < MIN_PERCENT || MAX_PERCENT < percentWidth) {
-            throw new IllegalArgumentException("cropme_result_width must be set from 0% to 100%");
+            throw new IllegalArgumentException("crop_result_width must be set from 0% to 100%");
         }
 
-        percentHeight = a.getFraction(R.styleable.SquareCropOverlay_cropme_result_height, DEFAULT_BASE, DEFAULT_PBASE, DEFAULT_PERCENT_HEIGHT);
+        percentHeight = a.getFraction(R.styleable.CircleCropOverlay_crop_result_height, DEFAULT_BASE, DEFAULT_PBASE, DEFAULT_PERCENT_HEIGHT);
         if (percentHeight < MIN_PERCENT || MAX_PERCENT < percentHeight) {
-            throw new IllegalArgumentException("cropme_result_width must be set from 0% to 100%");
+            throw new IllegalArgumentException("crop_result_width must be set from 0% to 100%");
         }
 
-        backgroundAlpha = (int) (a.getFraction(R.styleable.SquareCropOverlay_cropme_background_alpha, DEFAULT_BASE, DEFAULT_PBASE, DEFAULT_BACKGROUND_ALPHA) * COLOR_DENSITY);
+        backgroundAlpha = (int) (a.getFraction(R.styleable.CircleCropOverlay_crop_background_alpha, DEFAULT_BASE, DEFAULT_PBASE, DEFAULT_BACKGROUND_ALPHA) * COLOR_DENSITY);
         if (percentWidth < MIN_PERCENT || MAX_PERCENT < percentWidth) {
-            throw new IllegalArgumentException("cropme_background_alpha must be set between 0% to 100%");
+            throw new IllegalArgumentException("crop_background_alpha must be set between 0% to 100%");
         }
 
-        withBorder = a.getBoolean(R.styleable.SquareCropOverlay_cropme_with_border, DEFAULT_WITH_BORDER);
+        withBorder = a.getBoolean(R.styleable.CircleCropOverlay_crop_with_border, DEFAULT_WITH_BORDER);
 
         a.recycle();
 
