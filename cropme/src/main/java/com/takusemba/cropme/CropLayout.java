@@ -63,20 +63,22 @@ public final class CropLayout extends FrameLayout implements Croppable {
     }
 
     private void init() {
+        CropImageView cropImageView = new CropImageView(getContext());
+        cropImageView.setId(R.id.cropme_image_view);
+        addView(cropImageView, 0);
+
         getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
                 final CropOverlay overlayView = findViewById(R.id.cropme_overlay);
                 frame = overlayView.getFrame();
-                CropImageView cropImageView = new CropImageView(getContext());
+                CropImageView cropImageView = findViewById(R.id.cropme_image_view);
                 cropImageView.setFrame(frame);
                 LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
                 cropImageView.setScaleType(ImageView.ScaleType.FIT_XY);
                 cropImageView.setAdjustViewBounds(true);
                 cropImageView.setLayoutParams(layoutParams);
-                cropImageView.setId(R.id.cropme_image_view);
-                addView(cropImageView, 0);
 
                 horizontalAnimator = new HorizontalMoveAnimatorImpl(cropImageView, frame, maxScale);
                 verticalAnimator = new VerticalMoveAnimatorImpl(cropImageView, frame, maxScale);
