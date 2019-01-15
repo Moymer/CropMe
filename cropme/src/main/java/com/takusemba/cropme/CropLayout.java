@@ -166,49 +166,54 @@ public final class CropLayout extends FrameLayout implements Croppable {
         ImageView imageView = findViewById(R.id.cropme_image_view);
         final Rect targetRect = new Rect();
         imageView.getHitRect(targetRect);
-        final Bitmap sourceBitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Bitmap bitmap = Bitmap.createScaledBitmap(sourceBitmap, targetRect.width(), targetRect.height(), false);
-                int leftOffset = (int) frame.left - targetRect.left;
-                int topOffset = (int) frame.top - targetRect.top;
-                int rightOffset = (int) (targetRect.right - frame.right);
-                int bottomOffset = (int) (targetRect.bottom - frame.bottom);
-                int width = (int) frame.width();
-                int height = (int) frame.height();
+        try {
+            final Bitmap sourceBitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Bitmap bitmap = Bitmap.createScaledBitmap(sourceBitmap, targetRect.width(), targetRect.height(), false);
+                    int leftOffset = (int) frame.left - targetRect.left;
+                    int topOffset = (int) frame.top - targetRect.top;
+                    int rightOffset = (int) (targetRect.right - frame.right);
+                    int bottomOffset = (int) (targetRect.bottom - frame.bottom);
+                    int width = (int) frame.width();
+                    int height = (int) frame.height();
 
-                if (leftOffset < 0) {
-                    width += leftOffset;
-                    leftOffset = 0;
-                }
-                if (topOffset < 0) {
-                    height += topOffset;
-                    topOffset = 0;
-                }
-                if (rightOffset < 0) {
-                    width += rightOffset;
-                }
-                if (bottomOffset < 0) {
-                    height += bottomOffset;
-                }
-                if (width < 0 || height < 0) {
-                    throw new IllegalStateException("width or heigt is less than 0");
-                }
-
-                final Bitmap result = Bitmap.createBitmap(bitmap, leftOffset, topOffset, width, height);
-
-                ((Activity) getContext()).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (result != null) {
-                            listener.onSuccess(result);
-                        } else {
-                            listener.onFailure();
-                        }
+                    if (leftOffset < 0) {
+                        width += leftOffset;
+                        leftOffset = 0;
                     }
-                });
-            }
-        }).start();
+                    if (topOffset < 0) {
+                        height += topOffset;
+                        topOffset = 0;
+                    }
+                    if (rightOffset < 0) {
+                        width += rightOffset;
+                    }
+                    if (bottomOffset < 0) {
+                        height += bottomOffset;
+                    }
+                    if (width < 0 || height < 0) {
+                        throw new IllegalStateException("width or height is less than 0");
+                    }
+
+                    final Bitmap result = Bitmap.createBitmap(bitmap, leftOffset, topOffset, width, height);
+
+                    ((Activity) getContext()).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (result != null) {
+                                listener.onSuccess(result);
+                            } else {
+                                listener.onFailure();
+                            }
+                        }
+                    });
+                }
+            }).start();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            listener.onFailure();
+        }
     }
 }
